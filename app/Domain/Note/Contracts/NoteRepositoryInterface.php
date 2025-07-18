@@ -2,30 +2,34 @@
 
 namespace App\Domain\Note\Contracts;
 
+use Illuminate\Support\Collection;
+
+use App\Models\Note;
+use App\Domain\Note\DTO\NoteDTO;
+
 interface NoteRepositoryInterface
 {
     /**
      * @param array $note
-     * @return mixed
+     * @return Note
      */
-    public function createNote(array $note);
+    public function createNote(NoteDTO $noteDTO): NoteDTO;
 
     /**
-     * @param $id
-     * @return mixed
+     * @return Collection
      */
-    public function getNote();
+    public function getAllByUser(int $userId): Collection;
 
     /**
      * @param array $note
-     * @return mixed
+     * @return Note
      */
-    public function updateNote(array $note);
+    public function updateNote(NoteDTO $noteDTO): NoteDTO;
 
     /**
-     * @param $id
-     * @return mixed
+     * @param int $id
+     * @return bool
      */
-    public function deleteNote($id);
+    public function deleteNote(int $id): bool;
 
 }

@@ -2,15 +2,13 @@
 
 namespace App\Domain\Shared\Contracts;
 
+use App\Domain\Note\DTO\NoteDTO;
+use Illuminate\Database\Eloquent\Collection;
+
 interface EloquentRepositoryInterface
 {
-    public function getAllNote(array $data);
-
-    public function create(array $note);
-
-    public function update(array $note);
-
-    public function addNote(array $note);
-
-    public function deleteNote($id);
+    public function all(): Collection;
+    public function create(array|NoteDTO $data);
+    public function update(int $id, array|NoteDTO $data);
+    public function delete(int $id): bool;
 }
