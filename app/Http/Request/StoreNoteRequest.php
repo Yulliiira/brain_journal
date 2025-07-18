@@ -3,6 +3,7 @@
 namespace App\Http\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
+
 use App\Domain\Note\DTO\NoteDTO;
 use App\Enum\NoteTypeEnum;
 

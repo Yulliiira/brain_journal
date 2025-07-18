@@ -2,8 +2,9 @@
 
 namespace App\Domain\Shared\Contracts;
 
-use App\Domain\Note\DTO\NoteDTO;
 use Illuminate\Database\Eloquent\Collection;
+
+use App\Domain\Note\DTO\NoteDTO;
 
 interface EloquentRepositoryInterface
 {
