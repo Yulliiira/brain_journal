@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Collection;
 use App\Domain\Note\Contracts\NoteServiceInterface;
 use App\Domain\Note\Contracts\NoteRepositoryInterface;
 use App\Domain\Note\DTO\NoteDTO;
@@ -11,27 +12,29 @@ class NoteService implements NoteServiceInterface
 {
     public function __construct(
         private NoteRepositoryInterface $repository
-    )
+    ) {}
+
+    public function create(NoteDTO $dto): Note
     {
+        return $this->repository->create($dto);
     }
 
-    public function createNote(NoteDTO $dto): Note
+    public function getAll(?int $userId = null): Collection
     {
-        return $this->repository->createNote($dto);
+        if($userId === null) {
+            return Note::all();
+        }
+        return $this->repository->findAllByUser($userId);
     }
 
-    public function getNotes(NoteDTO $dto): Note
+    public function update(int $id, NoteDTO $dto): Note
     {
-        // пока можно не трогать, сделаем позже
+        return $this->repository->update($id, $dto);
     }
 
-    public function updateNote(NoteDTO $dto): Note
+    public function delete(int $id): bool
     {
-        // потом добавим
-    }
-
-    public function deleteNote(NoteDTO $dto): Note
-    {
-        // потом добавим
+        return $this->repository->delete($id);
     }
 }
+

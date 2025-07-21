@@ -9,6 +9,12 @@ class NoteResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return[
+           'id' => $this->id,
+            'user_id' => $this->userId,
+           'title' => $this->title,
+           'content' => $this->content,
+           'type' => $this->type,
+        ];
     }
 }

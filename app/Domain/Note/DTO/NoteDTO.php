@@ -15,9 +15,9 @@ class NoteDTO
      * @param Note $content
      */
     public function __construct(
-        public readonly int          $userId,
+        public readonly ?int          $userId,
         public readonly string       $title,
-        public readonly string       $content,
+        public readonly ?string       $content,
         public readonly NoteTypeEnum $type
     )
     {
