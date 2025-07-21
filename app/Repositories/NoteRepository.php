@@ -2,51 +2,42 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Collection;
 use App\Domain\Note\Contracts\NoteRepositoryInterface;
+use App\Domain\Note\DTO\NoteDTO;
 use App\Models\Note;
-use Illuminate\Database\QueryException;
 
 class NoteRepository implements NoteRepositoryInterface
 {
-    public function getNote()
+    public function create(NoteDTO $dto): Note
     {
-        return Note::all();
+        return Note::create([
+            'user_id' => $dto->userId,
+            'title'   => $dto->title,
+            'content' => $dto->content,
+            'type'    => $dto->type->value,
+        ]);
     }
 
-    public function createNote(array $data)
+    public function findAllByUser(int $userId): Collection
     {
-        try {
-            $this->validateNoteData($note);
-
-            return Note::create($note);
-        } catch (\InvalidArgumentException $e) {
-//            throw new
-
-        } catch (QueryException $e) {
-            logger()->error('Error creating note: ', [
-                    'data' => $data,
-                    $e->getMessage()]
-            );
-        }
+        return Note::where('user_id', $userId)->get();
     }
 
-    public function updateNote(array $note)
+    public function update(int $id, NoteDTO $dto): Note
     {
-
+        $note = Note::findOrFail($id);
+        $note->update([
+            'title'   => $dto->title,
+            'content' => $dto->content,
+            'type'    => $dto->type->value,
+        ]);
+        return $note;
     }
 
-    public function deleteNote($id)
+    public function delete(int $id): bool
     {
-    }
-
-    private function validateNoteData(array $data): void
-    {
-        $required = ['user_id', 'title', 'content', 'type'];
-
-        foreach ($required as $field) {
-            if (!isset($data[$field])) {
-                throw new \InvalidArgumentException("$field is required");
-            }
-        }
+        return Note::findOrFail($id)->delete();
     }
 }
+

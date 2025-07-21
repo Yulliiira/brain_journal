@@ -7,10 +7,10 @@ use Illuminate\Support\Collection;
 use App\Domain\Note\DTO\NoteDTO;
 use App\Models\Note;
 
-interface NoteRepositoryInterface
+interface NoteServiceInterface
 {
     public function create(NoteDTO $dto): Note;
-    public function findAllByUser(int $userId): Collection;
+    public function getAll(int $userId): Collection;
     public function update(int $id, NoteDTO $dto): Note;
     public function delete(int $id): bool;
 }
