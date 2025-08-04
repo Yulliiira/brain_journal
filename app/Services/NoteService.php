@@ -37,4 +37,3 @@ class NoteService implements NoteServiceInterface
         return $this->repository->delete($id);
     }
 }
-

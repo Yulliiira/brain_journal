@@ -9,11 +9,12 @@ use App\Models\User;
 class NoteDTO
 {
     /**
-     * @param User $id
-     * @param Note $user_id
-     * @param Note $title
-     * @param Note $content
+     * @property int|null $userId
+     * @property string $title
+     * @property string|null $content
+     * @property NoteTypeEnum $type
      */
+
     public function __construct(
         public readonly ?int          $userId,
         public readonly string       $title,

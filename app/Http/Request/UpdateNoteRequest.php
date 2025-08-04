@@ -14,7 +14,7 @@ class UpdateNoteRequest extends FormRequest
         return [
             'title'   => ['string'],
             'content' => ['nullable', 'string'],
-            'type'    => ['string', 'in:Идея,Цитата,Мысль,Вопрос'],
+            'type' => ['sometimes', 'string', 'in:Идея,Цитата,Мысль,Вопрос'],
         ];
     }
 
@@ -24,7 +24,7 @@ class UpdateNoteRequest extends FormRequest
             auth()->id(),
             $this->input('title'),
             $this->input('content'),
-            NoteTypeEnum::from($this->input('type'))
+            NoteTypeEnum::tryFrom($this->input('type')) ?? NoteTypeEnum::IDEA,
         );
     }
 }
