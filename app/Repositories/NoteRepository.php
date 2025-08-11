@@ -12,7 +12,7 @@ class NoteRepository implements NoteRepositoryInterface
     public function create(NoteDTO $dto): Note
     {
         return Note::create([
-            'user_id' => $dto->userId,
+            'user_id' => $dto->user_id,
             'title'   => $dto->title,
             'content' => $dto->content,
             'type'    => $dto->type->value,
