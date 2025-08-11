@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->nullOnDelete();
             $table->string('title');
             $table->text('content');
             $table->enum('type',['Идея','Цитата', 'Мысль','Вопрос']);

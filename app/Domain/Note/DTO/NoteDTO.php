@@ -3,8 +3,6 @@
 namespace App\Domain\Note\DTO;
 
 use App\Enum\NoteTypeEnum;
-use App\Models\Note;
-use App\Models\User;
 
 class NoteDTO
 {
