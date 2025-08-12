@@ -10,8 +10,9 @@ use App\Models\Category;
 
 interface CategoryRepositoryInterface
 {
-    public function create(CategoryDto $dto): Category;
-    public function update(CategoryDto $dto, int $id): Category;
+    public function create(CategoryDTO $dto): Category;
+    public function update(CategoryDTO $dto, int $id): Category;
     public function findAllByUserId(int $userId): Collection;
+    public  function findByIdForUser(int $id, int $userId): Category;
     public  function delete(int $id): bool;
 }

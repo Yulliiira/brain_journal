@@ -20,6 +20,11 @@ class Note extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function outgoingRelations(): HasMany
     {
         return $this->hasMany(NoteRelation::class, 'note_id_from');

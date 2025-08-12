@@ -31,17 +31,13 @@ class CategoryService implements CategoryServiceInterface
         return $this->repository->delete($id);
     }
 
-    public function getAllByUser(int $userId, int $id): Collection
+    public function getAllByUser(int $userId): Collection
     {
-        if($userId === null){
-            return Category::all();
-        }
-
-        return $this->repository->findAllByUserId($id);
+        return $this->repository->findAllByUserId($userId);
     }
 
     public function findByIdForUser(int $id, int $userId): Category
     {
-
+        return  $this->repository->findByIdForUser($id, $userId);
     }
 }

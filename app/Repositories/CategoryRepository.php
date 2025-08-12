@@ -19,7 +19,7 @@ class CategoryRepository implements CategoryRepositoryInterface
         ]);
     }
 
-    public function update(CategoryDto $dto, int $id): Category
+    public function update(CategoryDTO $dto, int $id): Category
     {
         $category = Category::findOrFail($id);
         $category->update([
@@ -27,6 +27,11 @@ class CategoryRepository implements CategoryRepositoryInterface
             'slug' => $dto->slug,
         ]);
         return $category;
+    }
+
+    public function findByIdForUser(int $id, int $userId): Category
+    {
+        return Category::where('id', $id)->where('user_id', $userId)->first();
     }
 
     public function findAllByUserId(int $userId): Collection

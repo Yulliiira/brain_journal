@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\StoreNoteRequest;
-use App\Http\Request\UpdateNoteRequest;
+use App\Http\Requests\StoreNoteRequest;
+use App\Http\Requests\UpdateNoteRequest;
 use App\Http\Resources\NoteResource;
 use App\Services\NoteService;
 
